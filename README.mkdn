@@ -1,0 +1,62 @@
+Dolby Vision
+==============
+
+Getting Started
+---------------
+For dolby media codecs to work add this line in your media codecs config (should be in vendor partition) :-
+
+```bash
+<Include href="media_codecs_dolby_video.xml" />
+```
+
+To build, add this in your device's makefile :-
+
+```bash
+$(call inherit-product, hardware/dolby-vision/dolby-vision.mk)
+```
+
+Now, moving hidl definitions in manifest to device trees is completely absurd so stop overriding manifest in your device trees an example for such would be :-
+
+Changing these in BoardConfig makefile of your device tree:-
+
+```bash
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE :=
+```
+And
+
+```bash
+DEVICE_MANIFEST_FILE :=
+```
+
+To:-
+
+```bash
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE +=
+```
+And
+
+```bash
+DEVICE_MANIFEST_FILE +=
+```
+
+The only change done above is changing := symbol to += so that manifest can't be overriden from device tree in BoardConfig makefile.
+
+At the end an example commit to properly implement it in your device tree could be :-
+
+[**1 Enable Dolby Vision**] https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/97e6c84e3e2390c7fa8acecc3cdedd70b5aed07d
+
+[**2 Disable Dolby Vision**] https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/41411ab3e6caabe8a304b03d6badcd8bf2211adb
+ 
+#### Tip pick anyone for Reference:
+          https://dumps.tadiphone.dev/dumps/xiaomi/vili/-/blob/missi_phone_global-user-14-UKQ1.231207.002-V816.0.5.0.UKDMIXM-release-keys/aosp-device-tree/proprietary-files.txt#L2072
+          https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/6a8f6aae347f9f864f17f2dfa5d541f83ab5b170
+          https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/5c593cbd2c19d571b7e62ea4bd6b8c864a4e1d9e
+
+# Credits:
+ * [**swiitchOFF**](https://github.com/swiitchOFF)
+ * [**HELLBOY017**](https://github.com/HELLBOY017)
+ * [**adithya2306**](https://github.com/adithya2306)
+ * [**johnmart19**](https://github.com/johnmart19)
+ * [**userariii**](https://github.com/userariii)
+ * [**saku-bruh**](https://github.com/saku-bruh)
+ * [**ahnet-69 · he/him**](https://github.com/ahnet-69)
